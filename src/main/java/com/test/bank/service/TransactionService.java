@@ -9,7 +9,7 @@ import com.test.bank.model.transaction.TransactionVo;
 import com.test.bank.db.tables.Transaction;
 import org.jooq.impl.DefaultConfiguration;
 import org.jooq.DSLContext;
-import org.jooq.Record6;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -81,11 +81,17 @@ public class TransactionService {
     public TransactionVo getTransactionLog(int userId) {
         // TODO implement getTransactionLog
         // id, fromuserid, touserid, action, adminid, createdate
-        /*List<Record6<UInteger, UInteger, UInteger, Byte, UInteger, Timestamp>> r =
+        List<Record> r =
                 dslContext.select()
                 .from(TRANSACTION)
                 .where(TRANSACTION.FROMUSERID.eq(UInteger.valueOf(userId)).or(TRANSACTION.TOUSERID.eq(UInteger.valueOf(userId))))
-                .fetch();*/
+                .fetch();
+
+        for(Record ra : r) {
+            System.out.println(ra.field(1));
+        }
+
+
         return null;
     }
 
